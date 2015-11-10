@@ -10,9 +10,22 @@ import HaskellGame.Datatypes
   Lab 2: Implement this function for 20 marks
 -}
 
-detectCollision :: Scene -> Point -> Bool
-detectCollision _ (x, y) = False
+objectsToPoints :: Located a => [a] -> [Point]
+objectsToPoints xs = map position xs
 
+whichTile :: Map -> Point -> [Char]
+whichTile (Map _ _ tile) (x,y) = theTile
+  where theTile = show ((tile !! y) !! x)
+
+detectCollision :: Scene -> Point -> Bool
+detectCollision (Scene map _ objects monsters) (x,y) =
+  if elem (x,y) (objectsToPoints objects) == True
+    then True
+  else if elem (x,y) (objectsToPoints monsters) == True
+    then True
+  else if whichTile map (x,y) == "#"
+    then True  
+    else False
 
 {- Handle a key press from the player -}
 
