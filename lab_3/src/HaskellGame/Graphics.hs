@@ -23,4 +23,4 @@ instance Show Monster where
 {- Displaying stats and status -}
 
 instance Show Stat where
-  show stat = "STAT!?" -- Task 1 - fix this
+  show (stat, level) = takesome 3 stat ++ " " ++ level
