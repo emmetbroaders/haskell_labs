@@ -23,4 +23,4 @@ instance Show Monster where
 {- Displaying stats and status -}
 
 instance Show Stat where
-  show (stat, level) = takesome 3 stat ++ " " ++ level
+    show (name, value) = takesome 3 name ++ " " ++ show value ++ " "

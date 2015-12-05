@@ -3,7 +3,7 @@ module HaskellGame.Battle where
 import Prelude (
                 Num(..), Eq(..), Ord(..),
                 Int(), Maybe(..),
-                (.), fst, otherwise, floor, log, sum, snd, div, fromIntegral
+                (.), ($), fst, otherwise, floor, log, sum, snd, div, fromIntegral
                )
 import qualified Data.List as List
 import Data.List (find)
@@ -42,13 +42,13 @@ fight (fighter1, fighter2) =
 -}
 
 instance Combatant Player where -- Task 2 : need to implement the five functions below
-  health _ = 42
+  health p = hitpoints p
 
-  attack _ = 42
+  attack _ = 42 
 
-  defense _ = 42
+  defense p = 42 {-List.find snd $stats p-}
 
-  level _ = 42
+  level p = floor $log $fromIntegral $sum $List.map snd $stats p
 
   damage p _ = p
 
